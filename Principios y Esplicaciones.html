@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Un blog sobre Programación Orientada a Objetos con principios, explicaciones y casos de uso.">
+  <title>Blog de Programación Orientada a Objetos</title>
+  <style>
+    /* Estilos generales */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      scroll-behavior: smooth;
+      line-height: 1.6;
+    }
+    header {
+      background: #333;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    nav {
+      background: #444;
+      padding: 10px;
+      text-align: center;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 15px;
+      font-size: 18px;
+      padding: 8px 12px;
+      transition: background 0.3s, transform 0.2s;
+    }
+    nav a:hover {
+      background: #555;
+      border-radius: 5px;
+      transform: scale(1.05);
+    }
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    /* Estilos para las secciones con "cuadritos" */
+    .section {
+      margin: 25px 0;
+      padding: 15px;
+      background: #e9e9e9;
+      border-left: 5px solid #444;
+      border-radius: 5px;
+      text-align: justify;
+    }
+    h2, h3 {
+      color: #333;
+    }
+    p {
+      text-align: justify;
+      margin: 10px 0;
+    }
+    ul {
+      margin: 10px 0 10px 20px;
+    }
+    /* Estilos para bloques de código */
+    pre {
+      background: #2d2d2d;
+      color: #f8f8f2;
+      padding: 15px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin: 15px 0;
+      font-size: 14px;
+      line-height: 1.4;
+    }
+    code {
+      background: #44475a;
+      color: #f8f8f2;
+      padding: 3px 8px;
+      border-radius: 5px;
+      font-family: "Courier New", Courier, monospace;
+    }
+    footer {
+      text-align: center;
+      padding: 10px;
+      background: #333;
+      color: #fff;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Blog de Programación Orientada a Objetos</h1>
+    <p>Explicaciones de los Principios de la POO</p>
+  </header>
+
+  <nav>
+    <a href="inicio.html">Inicio</a>
+    <a href="principios-y-explicaciones.html">Principios</a>
+    <a href="casos.html">Casos de Uso</a>
+  </nav>
+
+  <div class="container">
+    <h2>Principios de la Programación Orientada a Objetos</h2>
+
+    <!-- Encapsulamiento -->
+    <div class="section">
+      <h3>1. Encapsulamiento 🔒</h3>
+      <p><strong>¿Qué es?</strong> Es el principio que dice que los datos de un objeto deben estar protegidos y solo pueden ser accedidos o modificados mediante métodos específicos.</p>
+      <p><strong>Ejemplo en la vida real:</strong> Imagina una caja fuerte que solo se puede abrir con una clave; así los atributos de una clase están protegidos y solo se modifican a través de métodos específicos.</p>
+      <p><strong>Ejemplo en código (Python):</strong></p>
+      <pre>
+class CuentaBancaria:
+    def __init__(self, saldo):
+        self.__saldo = saldo  # Atributo privado
+
+    def depositar(self, cantidad):
+        self.__saldo += cantidad
+
+    def retirar(self, cantidad):
+        if cantidad <= self.__saldo:
+            self.__saldo -= cantidad
+            return f"Retiraste {cantidad}. Saldo actual: {self.__saldo}"
+        return "Fondos insuficientes"
+
+    def mostrar_saldo(self):
+        return f"Saldo actual: {self.__saldo}"
+      </pre>
+      <p><strong>✔️ Beneficio:</strong> Protege la información sensible y permite modificaciones controladas.</p>
+    </div>
+
+    <!-- Abstracción -->
+    <div class="section">
+      <h3>2. Abstracción 🎭</h3>
+      <p><strong>¿Qué es?</strong> Es el proceso de ocultar los detalles de implementación y mostrar solo lo necesario.</p>
+      <p><strong>Ejemplo en la vida real:</strong> Cuando usas un cajero automático, solo ves la interfaz para retirar dinero sin conocer cómo se procesa la transacción internamente.</p>
+      <p><strong>Ejemplo en código (Java):</strong></p>
+      <pre>
+abstract class Vehiculo {
+    abstract void encender();  // Método abstracto (sin implementación)
+
+    void frenar() {
+        System.out.println("El vehículo está frenando.");
+    }
+}
+
+class Auto extends Vehiculo {
+    @Override
+    void encender() {
+        System.out.println("El auto se ha encendido.");
+    }
+}
+      </pre>
+      <p><strong>✔️ Beneficio:</strong> Simplifica el uso de objetos al ocultar detalles innecesarios.</p>
+    </div>
+
+    <!-- Herencia -->
+    <div class="section">
+      <h3>3. Herencia 🧬</h3>
+      <p><strong>¿Qué es?</strong> Permite que una clase reutilice atributos y métodos de otra, estableciendo una relación jerárquica.</p>
+      <p><strong>Ejemplo en la vida real:</strong> Un hijo hereda características de sus padres, pero puede tener atributos adicionales.</p>
+      <p><strong>Ejemplo en código (Python):</strong></p>
+      <pre>
+class Persona:
+    def __init__(self, nombre, edad):
+        self.nombre = nombre
+        self.edad = edad
+
+    def presentarse(self):
+        return f"Hola, soy {self.nombre} y tengo {self.edad} años."
+
+class Estudiante(Persona):  # Hereda de Persona
+    def __init__(self, nombre, edad, carrera):
+        super().__init__(nombre, edad)
+        self.carrera = carrera
+
+    def estudiar(self):
+        return f"{self.nombre} está estudiando {self.carrera}."
+      </pre>
+      <p><strong>✔️ Beneficio:</strong> Favorece la reutilización del código y organiza las relaciones entre clases de manera clara.</p>
+    </div>
+
+    <!-- Polimorfismo -->
+    <div class="section">
+      <h3>4. Polimorfismo 🎭</h3>
+      <p><strong>¿Qué es?</strong> Significa que el mismo método puede tener diferentes comportamientos según el objeto que lo invoque.</p>
+      <p><strong>Ejemplo en la vida real:</strong> El verbo "hablar" se utiliza para referirse a la comunicación de humanos, perros, o gatos, aunque cada uno lo hace de manera distinta.</p>
+      <p><strong>Ejemplo en código (Java):</strong></p>
+      <pre>
+class Animal {
+    void hacerSonido() {
+        System.out.println("El animal hace un sonido.");
+    }
+}
+
+class Perro extends Animal {
+    @Override
+    void hacerSonido() {
+        System.out.println("Guau Guau");
+    }
+}
+
+class Gato extends Animal {
+    @Override
+    void hacerSonido() {
+        System.out.println("Miau");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Animal miAnimal = new Perro();
+        miAnimal.hacerSonido();  // Salida: "Guau Guau"
+        
+        miAnimal = new Gato();
+        miAnimal.hacerSonido();  // Salida: "Miau"
+    }
+}
+      </pre>
+      <p><strong>✔️ Beneficio:</strong> Ofrece flexibilidad y hace el código más adaptable y reutilizable.</p>
+    </div>
+  </div>
+
+  <footer>
+    <p>&copy; 2025 Blog de POO. Todos los derechos reservados.</p>
+  </footer>
+</body>
+</html>
